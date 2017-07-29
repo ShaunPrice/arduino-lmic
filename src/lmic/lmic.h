@@ -63,11 +63,6 @@ TYPEDEF_xref2band_t; //!< \internal
 enum { MAX_XCHANNELS = 2 };      // extra channels in RAM, channels 0-71 are immutable
 enum { MAX_TXPOW_125kHz = 30 };
 
-#elif defined(CFG_au915)  // AU915 spectrum =================================================
-
-enum { MAX_XCHANNELS = 2 };      // extra channels in RAM, channels 0-71 are immutable
-enum { MAX_TXPOW_125kHz = 30 };
-
 #endif // ==========================================================================
 
 // Keep in sync with evdefs.hpp::drChange
@@ -178,11 +173,6 @@ struct lmic_t {
     u2_t        xchDrMap[MAX_XCHANNELS];   // extra channel datarate ranges  ---XXX: ditto
     u2_t        channelMap[(72+MAX_XCHANNELS+15)/16];  // enabled bits
     u2_t        chRnd;        // channel randomizer
-#elif defined(CFG_au915)
-	u4_t        xchFreq[MAX_XCHANNELS];    // extra channel frequencies (if device is behind a repeater)
-	u2_t        xchDrMap[MAX_XCHANNELS];   // extra channel datarate ranges  ---XXX: ditto
-	u2_t        channelMap[(72 + MAX_XCHANNELS + 15) / 16];  // enabled bits
-	u2_t        chRnd;        // channel randomizer
 #endif
     u1_t        txChnl;          // channel for next TX
     u1_t        globalDutyRate;  // max rate: 1/2^k
@@ -283,13 +273,6 @@ void  LMIC_enableChannel (u1_t channel);
 void  LMIC_enableSubBand (u1_t band);
 void  LMIC_disableSubBand (u1_t band);
 void  LMIC_selectSubBand (u1_t band);
-#endif
-
-#if defined(CFG_au915)
-void  LMIC_enableChannel(u1_t channel);
-void  LMIC_enableSubBand(u1_t band);
-void  LMIC_disableSubBand(u1_t band);
-void  LMIC_selectSubBand(u1_t band);
 #endif
 
 void  LMIC_setDrTxpow   (dr_t dr, s1_t txpow);  // set default/start DR/txpow

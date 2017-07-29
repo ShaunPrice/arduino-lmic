@@ -5,8 +5,6 @@ modified to run in the Arduino environment, allowing using the SX1272,
 SX1276 tranceivers and compatible modules (such as some HopeRF RFM9x
 modules).
 
-This version of the library incorporates the Australian 915MHz settings (CFG_au915).
-
 This library mostly exposes the functions defined by LMIC, it makes no
 attempt to wrap them in a higher level API that is more in the Arduino
 style. To find out how to use the library itself, see the examples, or
